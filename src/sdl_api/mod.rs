@@ -1,6 +1,6 @@
-pub mod sdl_start;
-pub mod sdl_put_pixel;
-pub mod sdl_event_handler;
+mod sdl_start;
+mod sdl_put_pixel;
+mod sdl_event_handler;
 
 pub use sdl_start::*;
 pub use sdl_put_pixel::*;
