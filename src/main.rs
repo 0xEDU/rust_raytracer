@@ -1,5 +1,6 @@
 extern crate sdl2;
 
+use sdl2::Sdl;
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
 use sdl2::pixels::Color;
@@ -8,19 +9,26 @@ use sdl2::render::Canvas;
 use sdl2::video::Window;
 use std::time::Duration;
 
-// This function will be stored in a sdl2_extension 
-// (or something like this) submodule.
-fn put_pixel(canvas: &mut Canvas<Window>, point: Point, color: Color) {
+struct SDLWrapper {
+    sdl_context: Sdl,
+    canvas: Canvas<Window>,
+}
+
+// These functions will be stored in a sdl2_extension
+// (or something like that) submodule.
+fn sdl2_put_pixel(canvas: &mut Canvas<Window>, point: Point, color: Color) {
     canvas.set_draw_color(color);
     canvas.draw_point(point).unwrap();
     canvas.set_draw_color(Color::RGB(0, 0, 0));
 }
- 
-pub fn main() {
+
+fn sdl2_start(window_name: &str,
+    width: u32,
+    height: u32) -> SDLWrapper {
     let sdl_context = sdl2::init().unwrap();
     let video_subsystem = sdl_context.video().unwrap();
  
-    let window = video_subsystem.window("rust-sdl2 demo", 800, 600)
+    let window = video_subsystem.window(window_name, width, height)
         .position_centered()
         .build()
         .unwrap();
@@ -30,21 +38,37 @@ pub fn main() {
     canvas.clear();
     canvas.present();
 
-    let mut event_pump = sdl_context.event_pump().unwrap();
-    'running: loop {
-        canvas.clear();
+    SDLWrapper {
+        sdl_context,
+        canvas,
+    }
+}
 
+fn sdl2_event_handler(event: Event) -> Result<(), bool> {
+    match event {
+        Event::Quit { .. } |
+        Event::KeyDown { keycode: Some(Keycode::Escape), .. } => Err({
+                true
+            }),
+        _ => Ok({})
+    }
+}
+ 
+pub fn main() {
+    let mut sdl_wrapper: SDLWrapper = sdl2_start("RT", 800, 600);
+
+    let mut event_pump = sdl_wrapper.sdl_context.event_pump().unwrap();
+    'running: loop {
         for event in event_pump.poll_iter() {
-            match event {
-                Event::Quit {..} |
-                Event::KeyDown { keycode: Some(Keycode::Escape), .. } => {
-                    break 'running
-                },
-                _ => {}
+            if let Err(_) = sdl2_event_handler(event) {
+                break 'running
             }
         }
-        put_pixel(&mut canvas, Point::new(40, 40), Color::RGB(149, 173, 32));
-        canvas.present();
+        sdl_wrapper.canvas.clear();
+        sdl2_put_pixel(&mut sdl_wrapper.canvas,
+            Point::new(40, 40),
+            Color::RGB(149, 173, 32));
+        sdl_wrapper.canvas.present();
         ::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 60));
     }
 }
