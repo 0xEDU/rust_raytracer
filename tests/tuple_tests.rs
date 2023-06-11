@@ -32,3 +32,23 @@ fn vector_creation_test() {
     assert_eq!(a.y, -4.0);
     assert_eq!(a.z, 3.0);
 }
+
+#[test]
+fn tuple_comparison_test() {
+    let a: Point = point(4.0, -4.0, 3.0);
+    let b: Point = point(4.0, -4.0, 3.0);
+    assert!(a == b);
+}
+
+#[test]
+fn tuple_operators_test() {
+    let a: Vector = vector(1.0, 1.0, 1.0);
+    let b: Vector = vector(1.0, 1.0, 1.0);
+    let result: Vector = vector(2.0, 2.0, 2.0);
+    assert!((a + b) == result);
+
+    let a: Vector = vector(1.0, 1.0, 1.0);
+    let b: Vector = vector(1.0, 1.0, 1.0);
+    let result: Vector = vector(0.0, 0.0, 0.0);
+    assert!((a - b) == result);
+}
