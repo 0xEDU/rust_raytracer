@@ -1,3 +1,6 @@
+use std::ops;
+
+/* Tuple/Point/Vector declaration and implementation ======================= */
 pub struct Tuple {
     pub x: f64,
     pub y: f64,
@@ -20,6 +23,46 @@ impl Tuple {
     }
 }
 
+/* ========================================================================= */
+
+/* Operator overloads for Tuple ============================================ */
+impl std::cmp::PartialEq<Tuple> for Tuple {
+    fn eq(&self, rhs: &Self) -> bool {
+        self.x.to_bits() == rhs.x.to_bits()
+        && self.y.to_bits() == rhs.y.to_bits()
+        && self.z.to_bits() == rhs.z.to_bits()
+        && self.w.to_bits() == rhs.w.to_bits()
+    }
+}
+
+impl std::cmp::Eq for Tuple {}
+
+impl ops::Add<Tuple> for Tuple {
+    type Output = Tuple;
+
+    fn add(self, rhs: Tuple) -> Self::Output {
+        Tuple { x: self.x + rhs.x,
+                y: self.y + rhs.y,
+                z: self.z + rhs.z,
+                w: self.w + rhs.w,
+        }
+    }
+}
+
+impl ops::Sub<Tuple> for Tuple {
+    type Output = Tuple;
+
+    fn sub(self, rhs: Tuple) -> Self::Output {
+        Tuple { x: self.x - rhs.x,
+                y: self.y - rhs.y,
+                z: self.z - rhs.z,
+                w: self.w - rhs.w,
+        }
+    }
+}
+/* ========================================================================= */
+
+/* Factory functions ======================================================= */
 pub fn point(x: f64, y: f64, z: f64) -> Point {
     Point { x, y, z, w: 1.0 }
 }
@@ -27,3 +70,4 @@ pub fn point(x: f64, y: f64, z: f64) -> Point {
 pub fn vector(x: f64, y: f64, z: f64) -> Vector {
     Vector { x, y, z, w: 0.0 }
 }
+/* ========================================================================= */
