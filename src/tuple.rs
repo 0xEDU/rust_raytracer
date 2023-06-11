@@ -1,6 +1,7 @@
 use std::ops;
 
 /* Tuple/Point/Vector declaration and implementation ======================= */
+#[derive(Clone, Copy)]
 pub struct Tuple {
     pub x: f64,
     pub y: f64,
@@ -101,10 +102,12 @@ impl ops::Div<f64> for Tuple {
 
 /* Operations with Tuples ================================================== */
 pub fn magnitude(tup: Tuple) -> f64 {
-    let ret =
-        (tup.x.powi(2) + tup.y.powi(2) + tup.z.powi(2) + tup.w.powi(2))
-        .sqrt();
-    ret
+    (tup.x.powi(2) + tup.y.powi(2) + tup.z.powi(2) + tup.w.powi(2))
+    .sqrt()
+}
+
+pub fn normalize(tup: Tuple) -> Tuple {
+    tup / magnitude(tup)
 }
 /* ========================================================================= */
 /* Factory functions ======================================================= */
