@@ -42,10 +42,11 @@ impl ops::Add<Tuple> for Tuple {
     type Output = Tuple;
 
     fn add(self, rhs: Tuple) -> Self::Output {
-        Tuple { x: self.x + rhs.x,
-                y: self.y + rhs.y,
-                z: self.z + rhs.z,
-                w: self.w + rhs.w,
+        Tuple {
+            x: self.x + rhs.x,
+            y: self.y + rhs.y,
+            z: self.z + rhs.z,
+            w: self.w + rhs.w,
         }
     }
 }
@@ -54,10 +55,11 @@ impl ops::Sub<Tuple> for Tuple {
     type Output = Tuple;
 
     fn sub(self, rhs: Tuple) -> Self::Output {
-        Tuple { x: self.x - rhs.x,
-                y: self.y - rhs.y,
-                z: self.z - rhs.z,
-                w: self.w - rhs.w,
+        Tuple {
+            x: self.x - rhs.x,
+            y: self.y - rhs.y,
+            z: self.z - rhs.z,
+            w: self.w - rhs.w,
         }
     }
 }
@@ -79,10 +81,11 @@ impl ops::Mul<f64> for Tuple {
     type Output = Tuple;
 
     fn mul(self, rhs: f64) -> Self::Output {
-        Tuple { x: self.x * rhs,
-                y: self.y * rhs,
-                z: self.z * rhs,
-                w: self.w * rhs,
+        Tuple {
+            x: self.x * rhs,
+            y: self.y * rhs,
+            z: self.z * rhs,
+            w: self.w * rhs,
         }
     }
 }
@@ -91,10 +94,11 @@ impl ops::Div<f64> for Tuple {
     type Output = Tuple;
 
     fn div(self, rhs: f64) -> Self::Output {
-        Tuple { x: self.x * 1.0 / rhs,
-                y: self.y * 1.0 / rhs,
-                z: self.z * 1.0 / rhs,
-                w: self.w * 1.0 / rhs,
+        Tuple {
+            x: self.x * 1.0 / rhs,
+            y: self.y * 1.0 / rhs,
+            z: self.z * 1.0 / rhs,
+            w: self.w * 1.0 / rhs,
         }
     }
 }
@@ -108,6 +112,13 @@ pub fn magnitude(tup: Tuple) -> f64 {
 
 pub fn normalize(tup: Tuple) -> Tuple {
     tup / magnitude(tup)
+}
+
+pub fn dot(a: Tuple, b: Tuple) -> f64 {
+    a.x * b.x +
+    a.y * b.y +
+    a.z * b.z +
+    a.w * b.w
 }
 /* ========================================================================= */
 /* Factory functions ======================================================= */
