@@ -84,4 +84,9 @@ fn tuple_operations_test() {
     let v: Vector = vector(1.0, 2.0, 3.0);
     let result: f64 = 1.0;
     assert!(magnitude(normalize(v)) == result);
+
+    let a: Vector = vector(1.0, 2.0, 3.0);
+    let b: Vector = vector(2.0, 3.0, 4.0);
+    let result: f64 = 20.0;
+    assert!(dot(a, b) == result);
 }
