@@ -73,6 +73,30 @@ impl ops::Neg for Tuple {
         }
     }
 }
+
+impl ops::Mul<f64> for Tuple {
+    type Output = Tuple;
+
+    fn mul(self, rhs: f64) -> Self::Output {
+        Tuple { x: self.x * rhs,
+                y: self.y * rhs,
+                z: self.z * rhs,
+                w: self.w * rhs,
+        }
+    }
+}
+
+impl ops::Div<f64> for Tuple {
+    type Output = Tuple;
+
+    fn div(self, rhs: f64) -> Self::Output {
+        Tuple { x: self.x * 1.0 / rhs,
+                y: self.y * 1.0 / rhs,
+                z: self.z * 1.0 / rhs,
+                w: self.w * 1.0 / rhs,
+        }
+    }
+}
 /* ========================================================================= */
 
 /* Factory functions ======================================================= */
