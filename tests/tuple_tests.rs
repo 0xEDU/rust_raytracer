@@ -70,4 +70,18 @@ fn tuple_operations_test() {
     let a: Vector = vector(1.0, 2.0, 3.0);
     let result: f64 = (14.0_f64).sqrt();
     assert!(magnitude(a) == result);
+
+    let v: Vector = vector(4.0, 0.0, 0.0);
+    let result: Vector = vector(1.0, 0.0, 0.0);
+    assert!(normalize(v) == result);
+
+    let v: Vector = vector(1.0, 2.0, 3.0);
+    let result: Vector = vector(1.0 / (14.0_f64).sqrt(),
+                                2.0 / (14.0_f64).sqrt(),
+                                3.0 / (14.0_f64).sqrt());
+    assert!(normalize(v) == result);
+
+    let v: Vector = vector(1.0, 2.0, 3.0);
+    let result: f64 = 1.0;
+    assert!(magnitude(normalize(v)) == result);
 }
