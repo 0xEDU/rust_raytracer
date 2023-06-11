@@ -51,4 +51,10 @@ fn tuple_operators_test() {
     let b: Vector = vector(1.0, 1.0, 1.0);
     let result: Vector = vector(0.0, 0.0, 0.0);
     assert!((a - b) == result);
+
+    let a: Tuple = Tuple {x: 1.0, y: 1.0, z: 1.0, w: 0.0};
+    let result: Tuple = Tuple {x: -1.0, y: -1.0, z: -1.0, w: 0.0};
+    // let a: Vector = vector(1.0, 1.0, 1.0);
+    // let result: Vector = vector(-1.0, -1.0, -1.0);
+    assert!(-a == result);
 }
