@@ -41,7 +41,7 @@ fn tuple_comparison_test() {
 }
 
 #[test]
-fn tuple_operators_test() {
+fn tuple_operator_overload_test() {
     let a: Vector = vector(1.0, 1.0, 1.0);
     let b: Vector = vector(1.0, 1.0, 1.0);
     let result: Vector = vector(2.0, 2.0, 2.0);
@@ -63,4 +63,11 @@ fn tuple_operators_test() {
     let a: Tuple = Tuple {x: 2.0, y: 2.0, z: 2.0, w: 0.0};
     let result: Tuple = Tuple {x: 1.0, y: 1.0, z: 1.0, w: 0.0};
     assert!(a / 2.0 == result);
+}
+
+#[test]
+fn tuple_operations_test() {
+    let a: Vector = vector(1.0, 2.0, 3.0);
+    let result: f64 = (14.0_f64).sqrt();
+    assert!(magnitude(a) == result);
 }
