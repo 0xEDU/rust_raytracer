@@ -120,6 +120,14 @@ pub fn dot(a: Tuple, b: Tuple) -> f64 {
     a.z * b.z +
     a.w * b.w
 }
+
+pub fn cross(a: Tuple, b: Tuple) -> Tuple {
+    vector(
+        a.y * b.z - a.z * b.y,
+        a.z * b.x - a.x * b.z,
+        a.x * b.y - a.y * b.x,
+    )
+}
 /* ========================================================================= */
 /* Factory functions ======================================================= */
 pub fn point(x: f64, y: f64, z: f64) -> Point {
