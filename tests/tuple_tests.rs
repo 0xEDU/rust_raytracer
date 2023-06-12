@@ -89,4 +89,11 @@ fn tuple_operations_test() {
     let b: Vector = vector(2.0, 3.0, 4.0);
     let result: f64 = 20.0;
     assert!(dot(a, b) == result);
+
+    let a: Vector = vector(1.0, 2.0, 3.0);
+    let b: Vector = vector(2.0, 3.0, 4.0);
+    let result: Vector = vector(-1.0, 2.0, -1.0);
+    assert!(cross(a, b) == result);
+    let result: Vector = vector(1.0, -2.0, 1.0);
+    assert!(cross(b, a) == result);
 }
