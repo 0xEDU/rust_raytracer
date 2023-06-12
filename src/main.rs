@@ -1,10 +1,8 @@
-extern crate sdl2;
-
 mod sdl_api;
 
 use sdl_api::*;
 use std::time::Duration;
- 
+
 pub fn main() {
     let mut sdl_wrapper: SDLWrapper = sdl_api::sdl_start("RT", 800, 600);
 
