@@ -12,7 +12,7 @@ pub fn color(r: f64, g: f64, b: f64) -> RTColor {
 }
 /* ========================================================================= */
 
-/* Operator overloads for Color ============================================ */
+/* Operator overloads for RTColor ========================================== */
 impl std::cmp::PartialEq<RTColor> for RTColor {
     fn eq(&self, rhs: &Self) -> bool {
         self.r.to_bits() == rhs.r.to_bits()
@@ -57,5 +57,15 @@ impl ops::Mul<RTColor> for RTColor {
             b: self.b * rhs.b,
         }
     }
+}
+/* ========================================================================= */
+
+/* Operations with RTColor ================================================= */
+pub fn hadamard_product(c1: RTColor, c2: RTColor) -> RTColor {
+    color(
+        c1.r * c2.r,
+        c1.g * c2.g,
+        c1.b * c2.b,
+    )
 }
 /* ========================================================================= */
