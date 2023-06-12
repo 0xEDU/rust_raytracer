@@ -23,5 +23,4 @@ fn tuple_operator_overload_test() {
     let b: RTColor = color(2.0, 2.0, 2.0);
     let result: RTColor = RTColor {r: 4.0, g: 4.0, b: 4.0};
     assert!(a * b == result);
-
 }
