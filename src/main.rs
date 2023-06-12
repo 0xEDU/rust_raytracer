@@ -1,7 +1,7 @@
 mod sdl_api;
 
+use rt_challenge::rt_color::*;
 use sdl_api::*;
-use std::time::Duration;
 
 pub fn main() {
     let mut sdl_wrapper: SDLWrapper = sdl_api::sdl_start("RT", 800, 600);
@@ -16,8 +16,7 @@ pub fn main() {
         sdl_wrapper.canvas.clear();
         sdl_put_pixel(&mut sdl_wrapper.canvas,
             Point::new(40, 40),
-            Color::RGB(149, 173, 32));
+            RTColor {r: 1.0, g: 0.0, b: 0.0});
         sdl_wrapper.canvas.present();
-        ::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 60));
     }
 }
