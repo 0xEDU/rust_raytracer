@@ -34,4 +34,28 @@ impl ops::Add<RTColor> for RTColor {
         }
     }
 }
+
+impl ops::Sub<RTColor> for RTColor {
+    type Output = RTColor;
+
+    fn sub(self, rhs: RTColor) -> Self::Output {
+        RTColor {
+            r: self.r - rhs.r,
+            g: self.g - rhs.g,
+            b: self.b - rhs.b,
+        }
+    }
+}
+
+impl ops::Mul<RTColor> for RTColor {
+    type Output = RTColor;
+
+    fn mul(self, rhs: RTColor) -> Self::Output {
+        RTColor {
+            r: self.r * rhs.r,
+            g: self.g * rhs.g,
+            b: self.b * rhs.b,
+        }
+    }
+}
 /* ========================================================================= */
