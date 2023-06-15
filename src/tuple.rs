@@ -10,6 +10,7 @@ pub struct Tuple {
 }
 
 pub type Point = Tuple;
+pub type RTPoint = Tuple;
 pub type Vector = Tuple;
 
 impl Tuple {
