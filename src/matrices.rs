@@ -23,6 +23,16 @@ impl Matrix {
         id.data[3][3] = 1.0;
         id
     }
+
+    pub fn transpose(&self) -> Matrix {
+        let mut t = Matrix::new();
+        for i in 0..4 {
+            for j in 0..4 {
+                t.data[i][j] = self.data[j][i];
+            }
+        }
+        t
+    }
 }
 /* ========================================================================== */
 
