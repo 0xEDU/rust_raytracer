@@ -1,4 +1,4 @@
-use rt_challenge::matrices::*;
+use rt_challenge::{matrices::*, tuple::{Tuple, point}};
 
 #[test]
 fn matrix_instatiation_test() {
@@ -9,9 +9,14 @@ fn matrix_instatiation_test() {
             assert!(m.data[i][j] == (i + j) as f64);
         }
     }
+}
+
+#[test]
+fn matrix_operations_test() {
     let m: Matrix = Matrix::new();
     let n: Matrix = Matrix::new();
     assert!(m == n);
+
     let mut m: Matrix = Matrix::new();
     let mut n: Matrix = Matrix::new();
     for i in 0..3 {
@@ -34,4 +39,25 @@ fn matrix_instatiation_test() {
             )
         }
     }
+
+    let mut m: Matrix = Matrix::new();
+    let t: Tuple = point(1.0, 2.0, 3.0);
+    let result: Tuple = point(18.0, 24.0, 33.0);
+    m.data[0][0] = 1.0;
+    m.data[0][1] = 2.0;
+    m.data[0][2] = 3.0;
+    m.data[0][3] = 4.0;
+    m.data[1][0] = 2.0;
+    m.data[1][1] = 4.0;
+    m.data[1][2] = 4.0;
+    m.data[1][3] = 2.0;
+    m.data[2][0] = 8.0;
+    m.data[2][1] = 6.0;
+    m.data[2][2] = 4.0;
+    m.data[2][3] = 1.0;
+    m.data[3][0] = 0.0;
+    m.data[3][1] = 0.0;
+    m.data[3][2] = 0.0;
+    m.data[3][3] = 1.0;
+    assert!(m * t == result);
 }
