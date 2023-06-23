@@ -1,12 +1,10 @@
-use std::println;
-
 use rt_challenge::{matrices::*, tuple::{Tuple, point}};
 
 #[test]
 fn matrix_instatiation_test() {
     let mut m: Matrix = Matrix::new();
-    for i in 0..3 {
-        for j in 0..3 {
+    for i in 0..4 {
+        for j in 0..4 {
             m.data[i][j] = (i + j) as f64;
             assert!(m.data[i][j] == (i + j) as f64);
         }
@@ -21,19 +19,19 @@ fn matrix_operations_test() {
 
     let mut m: Matrix = Matrix::new();
     let mut n: Matrix = Matrix::new();
-    for i in 0..3 {
-        for j in 0..3 {
+    for i in 0..4 {
+        for j in 0..4 {
             m.data[i][j] = 2.0;
         }
     }
-    for i in 0..3 {
-        for j in 0..3 {
+    for i in 0..4 {
+        for j in 0..4 {
             n.data[i][j] = 2.0;
         }
     }
     let product = m * n;
-    for row in 0..3 {
-        for col in 0..3 {
+    for row in 0..4 {
+        for col in 0..4 {
             assert!(product.data[row][col] == m.data[row][0] * n.data[0][col] +
                                             m.data[row][1] * n.data[1][col] +
                                             m.data[row][2] * n.data[2][col] +
@@ -65,7 +63,7 @@ fn matrix_operations_test() {
 }
 
 #[test]
-fn test_identity_matrix() {
+fn identity_matrix_test() {
     let i = Matrix::identity();
     let mut m: Matrix = Matrix::new();
     m.data[0][0] = 1.0;
@@ -85,4 +83,11 @@ fn test_identity_matrix() {
     m.data[3][2] = 0.0;
     m.data[3][3] = 1.0;
     assert!((m * i) == m);
+}
+
+#[test]
+fn transposition_test() {
+    let i = Matrix::identity();
+    let transposed = i.transpose();
+    assert!(i == transposed);
 }
