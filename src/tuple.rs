@@ -14,6 +14,10 @@ pub type RTPoint = Tuple;
 pub type Vector = Tuple;
 
 impl Tuple {
+    pub fn new() -> Self {
+        Tuple { x: 0.0, y: 0.0, z: 0.0, w: 0.0 }
+    }
+
     pub fn is_vector(&self) -> bool {
         let result = if self.w == 0.0 {true} else {false};
         result
