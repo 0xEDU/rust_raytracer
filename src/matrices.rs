@@ -15,6 +15,14 @@ impl Matrix {
             data: [[0.0; 4]; 4],
         }
     }
+    pub fn identity() -> Self {
+        let mut id: Matrix = Matrix::new();
+        id.data[0][0] = 1.0;
+        id.data[1][1] = 1.0;
+        id.data[2][2] = 1.0;
+        id.data[3][3] = 1.0;
+        id
+    }
 }
 /* ========================================================================== */
 
