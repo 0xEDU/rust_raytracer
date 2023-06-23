@@ -1,6 +1,8 @@
 use std::fmt;
 use std::ops;
 
+use crate::tuple::Tuple;
+
 /* Matrix declaration and implementation ==================================== */
 #[derive(Clone, Copy)]
 pub struct Matrix {
@@ -50,6 +52,19 @@ impl ops::Mul<Matrix> for Matrix {
                                          self.data[row][3] * rhs.data[3][col]
             }
         }
+        product
+    }
+}
+
+impl ops::Mul<Tuple> for Matrix {
+    type Output = Tuple;
+
+    fn mul(self, rhs: Tuple) -> Self::Output {
+        let mut product: Tuple = Tuple::new();
+        product.x = self.data[0][0] * rhs.x + self.data[0][1] * rhs.y + self.data[0][2] * rhs.z + self.data[0][3] * rhs.w;
+        product.y = self.data[1][0] * rhs.x + self.data[1][1] * rhs.y + self.data[1][2] * rhs.z + self.data[1][3] * rhs.w;
+        product.z = self.data[2][0] * rhs.x + self.data[2][1] * rhs.y + self.data[2][2] * rhs.z + self.data[2][3] * rhs.w;
+        product.w = self.data[3][0] * rhs.x + self.data[3][1] * rhs.y + self.data[3][2] * rhs.z + self.data[3][3] * rhs.w;
         product
     }
 }
