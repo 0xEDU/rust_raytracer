@@ -44,8 +44,8 @@ impl ops::Mul<Matrix> for Matrix {
 
     fn mul(self, rhs: Matrix) -> Self::Output {
         let mut product: Matrix = Matrix::new();
-        for row in 0..3 {
-            for col in 0..3 {
+        for row in 0..4 {
+            for col in 0..4 {
                 product.data[row][col] = self.data[row][0] * rhs.data[0][col] +
                                          self.data[row][1] * rhs.data[1][col] +
                                          self.data[row][2] * rhs.data[2][col] +
