@@ -1,3 +1,5 @@
+use std::println;
+
 use rt_challenge::{matrices::*, tuple::{Tuple, point}};
 
 #[test]
@@ -60,4 +62,27 @@ fn matrix_operations_test() {
     m.data[3][2] = 0.0;
     m.data[3][3] = 1.0;
     assert!(m * t == result);
+}
+
+#[test]
+fn test_identity_matrix() {
+    let i = Matrix::identity();
+    let mut m: Matrix = Matrix::new();
+    m.data[0][0] = 1.0;
+    m.data[0][1] = 2.0;
+    m.data[0][2] = 3.0;
+    m.data[0][3] = 4.0;
+    m.data[1][0] = 2.0;
+    m.data[1][1] = 4.0;
+    m.data[1][2] = 4.0;
+    m.data[1][3] = 2.0;
+    m.data[2][0] = 8.0;
+    m.data[2][1] = 6.0;
+    m.data[2][2] = 4.0;
+    m.data[2][3] = 1.0;
+    m.data[3][0] = 0.0;
+    m.data[3][1] = 0.0;
+    m.data[3][2] = 0.0;
+    m.data[3][3] = 1.0;
+    assert!((m * i) == m);
 }
