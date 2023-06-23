@@ -1,24 +1,37 @@
+use std::fmt;
+
 /* Matrix declaration and implementation ==================================== */
 pub struct Matrix {
-    pub rows: usize,
-    pub columns: usize,
-    pub this: Vec<f64>,
+    pub data: [[f64; 4]; 4],
 }
 
 impl Matrix {
-    pub fn new(r: usize, c: usize, v: Vec<f64>) -> Matrix {
+    pub fn new() -> Self {
         Matrix {
-            rows: r,
-            columns: c,
-            this: v,
+            data: [[0.0; 4]; 4],
         }
-    }
-
-    pub fn at(&self, i: usize, j: usize) -> f64 {
-        self.this[i * self.columns + j]
     }
 }
 /* ========================================================================== */
 
 /* Operator overloads for Matrix ============================================ */
+impl fmt::Display for Matrix {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        for row in &self.data {
+            for &value in row {
+                write!(f, "{:10.4} ", value)?
+            }
+            writeln!(f)?;
+        }
+        Ok(())
+    }
+}
+
+impl std::cmp::PartialEq<Matrix> for Matrix {
+    fn eq(&self, rhs: &Self) -> bool {
+        self.data == rhs.data
+    }
+}
+
+impl std::cmp::Eq for Matrix {}
 /* ========================================================================== */
