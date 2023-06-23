@@ -1,6 +1,8 @@
 use std::fmt;
+use std::ops;
 
 /* Matrix declaration and implementation ==================================== */
+#[derive(Clone, Copy)]
 pub struct Matrix {
     pub data: [[f64; 4]; 4],
 }
@@ -34,4 +36,24 @@ impl std::cmp::PartialEq<Matrix> for Matrix {
 }
 
 impl std::cmp::Eq for Matrix {}
+
+impl ops::Mul<Matrix> for Matrix {
+    type Output = Matrix;
+
+    fn mul(self, rhs: Matrix) -> Self::Output {
+        let mut product: Matrix = Matrix::new();
+        for row in 0..3 {
+            for col in 0..3 {
+                product.data[row][col] = self.data[row][0] * rhs.data[0][col] +
+                                         self.data[row][1] * rhs.data[1][col] +
+                                         self.data[row][2] * rhs.data[2][col] +
+                                         self.data[row][3] * rhs.data[3][col]
+            }
+        }
+        product
+    }
+}
+/* ========================================================================== */
+
+/* Operations with Matrices ================================================= */
 /* ========================================================================== */
