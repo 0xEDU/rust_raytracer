@@ -86,46 +86,81 @@ fn identity_matrix_test() {
 }
 
 #[test]
-fn matrix_determinant_test() {
+fn matrix_determinant_2_test() {
+    let mut m = Matrix::matrix2();
+    m.data[0][0] = 1.0;
+    m.data[0][1] = 5.0;
+    m.data[1][0] = -3.0;
+    m.data[1][1] = 2.0;
+    assert!(m.determinant() == 17.0);
+}
+
+#[test]
+fn sub_matrix_test() {
     let mut m = Matrix::new();
-    m.data[0][0] = -5.0;
-    m.data[0][1] = 2.0;
-    m.data[0][2] = 6.0;
-    m.data[0][3] = -8.0;
-    m.data[1][0] = 1.0;
-    m.data[1][1] = -5.0;
-    m.data[1][2] = 1.0;
-    m.data[1][3] = 8.0;
-    m.data[2][0] = 7.0;
-    m.data[2][1] = 7.0;
-    m.data[2][2] = -6.0;
-    m.data[2][3] = -7.0;
-    m.data[3][0] = 1.0;
-    m.data[3][1] = -3.0;
-    m.data[3][2] = 7.0;
-    m.data[3][3] = 4.0;
-    assert!(m.determinant() == 532.0);
+    m.data[0][0] = 1.0;
+    m.data[0][1] = 5.0;
+    m.data[0][2] = 0.0;
+    m.data[1][0] = -3.0;
+    m.data[1][1] = 2.0;
+    m.data[1][2] = 7.0;
+    m.data[2][0] = 0.0;
+    m.data[2][1] = 6.0;
+    m.data[2][2] = 3.0;
+    let sub_matrix = m.submatrix(0, 2);
+    assert!(sub_matrix.data[0][0] == -3.0);
+    assert!(sub_matrix.data[0][1] == 2.0);
+    assert!(sub_matrix.data[1][0] == 0.0);
+    assert!(sub_matrix.data[1][1] == 6.0);
+}
+
+#[test]
+fn matrix_minor_test() {
+    let mut m = Matrix::new();
+    m.data[0][0] = 3.0;
+    m.data[0][1] = 5.0;
+    m.data[0][2] = 0.0;
+    m.data[1][0] = 2.0;
+    m.data[1][1] = -1.0;
+    m.data[1][2] = -7.0;
+    m.data[2][0] = 6.0;
+    m.data[2][1] = -1.0;
+    m.data[2][2] = 5.0;
+    assert!(m.minor(1, 0) == 25.0);
 }
 
 #[test]
 fn matrix_cofactor_test() {
     let mut m = Matrix::new();
-    m.data[0][0] = -5.0;
+    m.data[0][0] = 3.0;
+    m.data[0][1] = 5.0;
+    m.data[0][2] = 0.0;
+    m.data[1][0] = 2.0;
+    m.data[1][1] = -1.0;
+    m.data[1][2] = -7.0;
+    m.data[2][0] = 6.0;
+    m.data[2][1] = -1.0;
+    m.data[2][2] = 5.0;
+    assert!(m.minor(0, 0) == -12.0);
+    assert!(m.cofactor(0, 0) == -12.0);
+    assert!(m.minor(1, 0) == 25.0);
+    assert!(m.cofactor(1, 0) == -25.0);
+}
+
+#[test]
+fn matrix_determinant_3_test() {
+    let mut m = Matrix::matrix3();
+    m.data[0][0] = 1.0;
     m.data[0][1] = 2.0;
     m.data[0][2] = 6.0;
-    m.data[0][3] = -8.0;
-    m.data[1][0] = 1.0;
-    m.data[1][1] = -5.0;
-    m.data[1][2] = 1.0;
-    m.data[1][3] = 8.0;
-    m.data[2][0] = 7.0;
-    m.data[2][1] = 7.0;
-    m.data[2][2] = -6.0;
-    m.data[2][3] = -7.0;
-    m.data[3][0] = 1.0;
-    m.data[3][1] = -3.0;
-    m.data[3][2] = 7.0;
-    m.data[3][3] = 4.0;
-    // println!("{}", m.cofactor(2, 3));
-    assert!(m.cofactor(2, 3) == -160.0);
+    m.data[1][0] = -5.0;
+    m.data[1][1] = 8.0;
+    m.data[1][2] = -4.0;
+    m.data[2][0] = 2.0;
+    m.data[2][1] = 6.0;
+    m.data[2][2] = 4.0;
+    assert!(m.cofactor(0, 0) == 56.0);
+    assert!(m.cofactor(0, 1) == 12.0);
+    assert!(m.cofactor(0, 2) == -46.0);
+    assert!(m.determinant() == -196.0);
 }
