@@ -212,3 +212,41 @@ fn matrix_inversibility_test() {
     m.data[3][3] = 0.0;
     assert!(m.is_invertible() == false);
 }
+
+#[test]
+fn matrix_inversion_test() {
+    let mut m = Matrix::new();
+    m.data[0][0] = -5.0;
+    m.data[0][1] = 2.0;
+    m.data[0][2] = 6.0;
+    m.data[0][3] = -8.0;
+    m.data[1][0] = 1.0;
+    m.data[1][1] = -5.0;
+    m.data[1][2] = 1.0;
+    m.data[1][3] = 8.0;
+    m.data[2][0] = 7.0;
+    m.data[2][1] = 7.0;
+    m.data[2][2] = -6.0;
+    m.data[2][3] = -7.0;
+    m.data[3][0] = 1.0;
+    m.data[3][1] = -3.0;
+    m.data[3][2] = 7.0;
+    m.data[3][3] = 4.0;
+    let inverted = m.inverse();
+    assert!(inverted.data[0][0] == 0.21805);
+    assert!(inverted.data[0][1] == 0.45113);
+    assert!(inverted.data[0][2] == 0.24060);
+    assert!(inverted.data[0][3] == -0.04511);
+    assert!(inverted.data[1][0] == -0.80827);
+    assert!(inverted.data[1][1] == -1.45677);
+    assert!(inverted.data[1][2] == -0.44361);
+    assert!(inverted.data[1][3] == 0.52068);
+    assert!(inverted.data[2][0] == -0.07895);
+    assert!(inverted.data[2][1] == -0.22368);
+    assert!(inverted.data[2][2] == -0.05263);
+    assert!(inverted.data[2][3] == 0.19737);
+    assert!(inverted.data[3][0] == -0.52256);
+    assert!(inverted.data[3][1] == -0.81391);
+    assert!(inverted.data[3][2] == -0.30075);
+    assert!(inverted.data[3][3] == 0.30639);
+}
