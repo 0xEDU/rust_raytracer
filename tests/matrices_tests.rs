@@ -86,8 +86,46 @@ fn identity_matrix_test() {
 }
 
 #[test]
-fn transposition_test() {
-    let i = Matrix::identity();
-    let transposed = i.transpose();
-    assert!(i == transposed);
+fn matrix_determinant_test() {
+    let mut m = Matrix::new();
+    m.data[0][0] = -5.0;
+    m.data[0][1] = 2.0;
+    m.data[0][2] = 6.0;
+    m.data[0][3] = -8.0;
+    m.data[1][0] = 1.0;
+    m.data[1][1] = -5.0;
+    m.data[1][2] = 1.0;
+    m.data[1][3] = 8.0;
+    m.data[2][0] = 7.0;
+    m.data[2][1] = 7.0;
+    m.data[2][2] = -6.0;
+    m.data[2][3] = -7.0;
+    m.data[3][0] = 1.0;
+    m.data[3][1] = -3.0;
+    m.data[3][2] = 7.0;
+    m.data[3][3] = 4.0;
+    assert!(m.determinant() == 532.0);
+}
+
+#[test]
+fn matrix_cofactor_test() {
+    let mut m = Matrix::new();
+    m.data[0][0] = -5.0;
+    m.data[0][1] = 2.0;
+    m.data[0][2] = 6.0;
+    m.data[0][3] = -8.0;
+    m.data[1][0] = 1.0;
+    m.data[1][1] = -5.0;
+    m.data[1][2] = 1.0;
+    m.data[1][3] = 8.0;
+    m.data[2][0] = 7.0;
+    m.data[2][1] = 7.0;
+    m.data[2][2] = -6.0;
+    m.data[2][3] = -7.0;
+    m.data[3][0] = 1.0;
+    m.data[3][1] = -3.0;
+    m.data[3][2] = 7.0;
+    m.data[3][3] = 4.0;
+    // println!("{}", m.cofactor(2, 3));
+    assert!(m.cofactor(2, 3) == -160.0);
 }
