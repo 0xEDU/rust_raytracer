@@ -116,7 +116,7 @@ fn sub_matrix_test() {
 
 #[test]
 fn matrix_minor_test() {
-    let mut m = Matrix::new();
+    let mut m = Matrix::matrix3();
     m.data[0][0] = 3.0;
     m.data[0][1] = 5.0;
     m.data[0][2] = 0.0;
@@ -131,7 +131,7 @@ fn matrix_minor_test() {
 
 #[test]
 fn matrix_cofactor_test() {
-    let mut m = Matrix::new();
+    let mut m = Matrix::matrix3();
     m.data[0][0] = 3.0;
     m.data[0][1] = 5.0;
     m.data[0][2] = 0.0;
