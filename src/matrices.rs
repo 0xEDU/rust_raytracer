@@ -98,6 +98,12 @@ impl Matrix {
     pub fn is_invertible(&self) -> bool {
         if self.determinant() == 0.0 { false } else { true }
     }
+
+    pub fn inverse(&self) -> Result<Matrix, bool> {
+        let mut inverted: Matrix = Matrix::new();
+        inverted.size = self.size;
+
+    }
     /* --------------------------------------------------------------------- */
 }
 /* ========================================================================== */
