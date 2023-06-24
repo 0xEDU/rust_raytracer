@@ -190,3 +190,25 @@ fn matrix_determinant_4_test() {
     assert!(m.cofactor(0, 3) == 51.0);
     assert!(m.determinant() == -4071.0);
 }
+
+#[test]
+fn matrix_inversibility_test() {
+    let mut m = Matrix::new();
+    m.data[0][0] = -4.0;
+    m.data[0][1] = -2.0;
+    m.data[0][2] = -2.0;
+    m.data[0][3] = -3.0;
+    m.data[1][0] = 9.0;
+    m.data[1][1] = 6.0;
+    m.data[1][2] = 2.0;
+    m.data[1][3] = 6.0;
+    m.data[2][0] = 0.0;
+    m.data[2][1] = -5.0;
+    m.data[2][2] = 1.0;
+    m.data[2][3] = -5.0;
+    m.data[3][0] = 0.0;
+    m.data[3][1] = 0.0;
+    m.data[3][2] = 0.0;
+    m.data[3][3] = 0.0;
+    assert!(m.is_invertible() == false);
+}
