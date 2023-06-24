@@ -11,6 +11,7 @@ pub struct Matrix {
 }
 
 impl Matrix {
+    /* Special constructors ------------------------------------------------ */
     pub fn new() -> Self {
         Matrix {
             data: [[0.0; 4]; 4],
@@ -37,7 +38,9 @@ impl Matrix {
         m.size = 2;
         m
     }
+    /* --------------------------------------------------------------------- */
 
+    /* Matrix opeartions --------------------------------------------------- */
     pub fn transpose(&self) -> Matrix {
         let mut t = Matrix::new();
         for i in 0..4 {
@@ -91,6 +94,11 @@ impl Matrix {
         let minor = self.minor(row, col);
         if (col + row) % 2 == 0 { minor } else { minor * -1.0 }
     }
+
+    pub fn is_invertible(&self) -> bool {
+        if self.determinant() == 0.0 { false } else { true }
+    }
+    /* --------------------------------------------------------------------- */
 }
 /* ========================================================================== */
 
@@ -144,7 +152,4 @@ impl ops::Mul<Tuple> for Matrix {
         product
     }
 }
-/* ========================================================================== */
-
-/* Operations with Matrices ================================================= */
 /* ========================================================================== */
