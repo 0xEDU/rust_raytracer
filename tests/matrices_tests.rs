@@ -164,3 +164,29 @@ fn matrix_determinant_3_test() {
     assert!(m.cofactor(0, 2) == -46.0);
     assert!(m.determinant() == -196.0);
 }
+
+#[test]
+fn matrix_determinant_4_test() {
+    let mut m = Matrix::new();
+    m.data[0][0] = -2.0;
+    m.data[0][1] = -8.0;
+    m.data[0][2] = 3.0;
+    m.data[0][3] = 5.0;
+    m.data[1][0] = -3.0;
+    m.data[1][1] = 1.0;
+    m.data[1][2] = 7.0;
+    m.data[1][3] = 3.0;
+    m.data[2][0] = 1.0;
+    m.data[2][1] = 2.0;
+    m.data[2][2] = -9.0;
+    m.data[2][3] = 6.0;
+    m.data[3][0] = -6.0;
+    m.data[3][1] = 7.0;
+    m.data[3][2] = 7.0;
+    m.data[3][3] = -9.0;
+    assert!(m.cofactor(0, 0) == 690.0);
+    assert!(m.cofactor(0, 1) == 447.0);
+    assert!(m.cofactor(0, 2) == 210.0);
+    assert!(m.cofactor(0, 3) == 51.0);
+    assert!(m.determinant() == -4071.0);
+}
