@@ -99,10 +99,19 @@ impl Matrix {
         if self.determinant() == 0.0 { false } else { true }
     }
 
-    pub fn inverse(&self) -> Result<Matrix, bool> {
+    pub fn inverse(&self) -> Result<Matrix, ()> {
+        if !self.is_invertible() {
+            return Err(());
+        }
         let mut inverted: Matrix = Matrix::new();
         inverted.size = self.size;
-
+        for row in 0..self.size {
+            for col in 0..self.size {
+                let c = self.cofactor(row, col);
+                inverted.data[col][row] = c / self.determinant();
+            }
+        }
+        Ok(inverted)
     }
     /* --------------------------------------------------------------------- */
 }
