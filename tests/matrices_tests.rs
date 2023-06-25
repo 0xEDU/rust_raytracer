@@ -232,7 +232,8 @@ fn matrix_inversion_test() {
     m.data[3][1] = -3.0;
     m.data[3][2] = 7.0;
     m.data[3][3] = 4.0;
-    let inverted = m.inverse();
+    let inverted = m.inverse().unwrap();
+    println!("{}", m);
     assert!(inverted.data[0][0] == 0.21805);
     assert!(inverted.data[0][1] == 0.45113);
     assert!(inverted.data[0][2] == 0.24060);
