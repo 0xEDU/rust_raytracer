@@ -122,7 +122,7 @@ impl fmt::Display for Matrix {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         for row in &self.data {
             for &value in row {
-                write!(f, "{:10.4} ", value)?
+                write!(f, "{:10.5} ", value)?
             }
             writeln!(f)?;
         }
@@ -148,7 +148,7 @@ impl ops::Mul<Matrix> for Matrix {
                 product.data[row][col] = self.data[row][0] * rhs.data[0][col] +
                                          self.data[row][1] * rhs.data[1][col] +
                                          self.data[row][2] * rhs.data[2][col] +
-                                         self.data[row][3] * rhs.data[3][col]
+                                         self.data[row][3] * rhs.data[3][col] as f64
             }
         }
         product
