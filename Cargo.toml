@@ -3,6 +3,9 @@ name = "rt_challenge"
 version = "0.1.0"
 edition = "2021"
 
+[dependencies]
+float-cmp = "0.9.0"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies.sdl2]

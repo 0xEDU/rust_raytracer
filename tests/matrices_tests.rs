@@ -1,3 +1,4 @@
+use float_cmp::approx_eq;
 use rt_challenge::{matrices::*, tuple::{Tuple, point}};
 
 #[test]
@@ -233,21 +234,67 @@ fn matrix_inversion_test() {
     m.data[3][2] = 7.0;
     m.data[3][3] = 4.0;
     let inverted = m.inverse().unwrap();
-    println!("{}", m);
-    assert!(inverted.data[0][0] == 0.21805);
-    assert!(inverted.data[0][1] == 0.45113);
-    assert!(inverted.data[0][2] == 0.24060);
-    assert!(inverted.data[0][3] == -0.04511);
-    assert!(inverted.data[1][0] == -0.80827);
-    assert!(inverted.data[1][1] == -1.45677);
-    assert!(inverted.data[1][2] == -0.44361);
-    assert!(inverted.data[1][3] == 0.52068);
-    assert!(inverted.data[2][0] == -0.07895);
-    assert!(inverted.data[2][1] == -0.22368);
-    assert!(inverted.data[2][2] == -0.05263);
-    assert!(inverted.data[2][3] == 0.19737);
-    assert!(inverted.data[3][0] == -0.52256);
-    assert!(inverted.data[3][1] == -0.81391);
-    assert!(inverted.data[3][2] == -0.30075);
-    assert!(inverted.data[3][3] == 0.30639);
+    assert!((format!("{:.5}", inverted.data[0][0]) == "0.21805"));
+    assert!(format!("{:.5}", inverted.data[0][1]) == "0.45113");
+    assert!(format!("{:.5}", inverted.data[0][2]) == "0.24060");
+    assert!(format!("{:.5}", inverted.data[0][3]) == "-0.04511");
+    assert!(format!("{:.5}", inverted.data[1][0]) == "-0.80827");
+    assert!(format!("{:.5}", inverted.data[1][1]) == "-1.45677");
+    assert!(format!("{:.5}", inverted.data[1][2]) == "-0.44361");
+    assert!(format!("{:.5}", inverted.data[1][3]) == "0.52068");
+    assert!(format!("{:.5}", inverted.data[2][0]) == "-0.07895");
+    assert!(format!("{:.5}", inverted.data[2][1]) == "-0.22368");
+    assert!(format!("{:.5}", inverted.data[2][2]) == "-0.05263");
+    assert!(format!("{:.5}", inverted.data[2][3]) == "0.19737");
+    assert!(format!("{:.5}", inverted.data[3][0]) == "-0.52256");
+    assert!(format!("{:.5}", inverted.data[3][1]) == "-0.81391");
+    assert!(format!("{:.5}", inverted.data[3][2]) == "-0.30075");
+    assert!(format!("{:.5}", inverted.data[3][3]) == "0.30639");
+}
+
+#[test]
+fn test_matrix_multiplication_by_inverse() {
+    let mut a = Matrix::new();
+    a.data[0][0] = 3.0;
+    a.data[0][1] = -9.0;
+    a.data[0][2] = 7.0;
+    a.data[0][3] = 3.0;
+    a.data[1][0] = 3.0;
+    a.data[1][1] = -8.0;
+    a.data[1][2] = 2.0;
+    a.data[1][3] = -9.0;
+    a.data[2][0] = -4.0;
+    a.data[2][1] = 4.0;
+    a.data[2][2] = 4.0;
+    a.data[2][3] = 1.0;
+    a.data[3][0] = -6.0;
+    a.data[3][1] = 5.0;
+    a.data[3][2] = -1.0;
+    a.data[3][3] = 1.0;
+    
+    let mut b = Matrix::new();
+    b.data[0][0] = 8.0;
+    b.data[0][1] = 2.0;
+    b.data[0][2] = 2.0;
+    b.data[0][3] = 2.0;
+    b.data[1][0] = 3.0;
+    b.data[1][1] = -1.0;
+    b.data[1][2] = 7.0;
+    b.data[1][3] = 0.0;
+    b.data[2][0] = 7.0;
+    b.data[2][1] = 0.0;
+    b.data[2][2] = 5.0;
+    b.data[2][3] = 4.0;
+    b.data[3][0] = 6.0;
+    b.data[3][1] = -2.0;
+    b.data[3][2] = 0.0;
+    b.data[3][3] = 5.0;
+    
+    let c = a * b;
+    let result = c * b.inverse().unwrap();
+    for row in 0..4 {
+        for col in 0..4 {
+            assert!(approx_eq!(f64, a.data[row][col], result.data[row][col], ulps = 15));
+        }
+    }
 }
