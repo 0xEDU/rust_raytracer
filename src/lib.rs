@@ -4,3 +4,4 @@ pub extern crate float_cmp;
 pub mod tuple;
 pub mod rt_color;
 pub mod matrices;
+pub mod matrix_transformations;
