@@ -1,4 +1,5 @@
 use std::ops;
+use std::fmt;
 
 /* Tuple/Point/Vector declaration and implementation ======================= */
 #[derive(Clone, Copy)]
@@ -105,6 +106,16 @@ impl ops::Div<f64> for Tuple {
             z: self.z * 1.0 / rhs,
             w: self.w * 1.0 / rhs,
         }
+    }
+}
+
+impl fmt::Display for Tuple {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{:10.5} ", self.x)?;
+        write!(f, "{:10.5} ", self.y)?;
+        write!(f, "{:10.5}", self.z)?;
+        writeln!(f)?;
+        Ok(())
     }
 }
 /* ========================================================================= */
