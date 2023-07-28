@@ -24,3 +24,12 @@ pub fn rotation_x(r: f64) -> Matrix {
     m.data[2][2] = -(r.cos());
     m
 }
+
+pub fn rotation_y(r: f64) -> Matrix {
+    let mut m: Matrix = Matrix::identity();
+    m.data[0][0] = r.cos();
+    m.data[0][2] = r.sin();
+    m.data[2][0] = -(r.sin());
+    m.data[2][2] = r.cos();
+    m
+}
