@@ -253,7 +253,7 @@ fn matrix_inversion_test() {
 }
 
 #[test]
-fn test_matrix_multiplication_by_inverse() {
+fn matrix_multiplication_by_inverse_test() {
     let mut a = Matrix::new();
     a.data[0][0] = 3.0;
     a.data[0][1] = -9.0;
