@@ -82,3 +82,25 @@ fn inverse_x_axis_rotation_test() {
     approx_eq!(f64, result.y, expected.x, ulps = 15);
     approx_eq!(f64, result.z, expected.x, ulps = 15);
 }
+
+#[test]
+fn y_axis_rotation_test() {
+    let p = point(0.0, 0.0, 1.0);
+    let half_quarter = rotation_y(PI / 4.0);
+    let full_quarter = rotation_y(PI / 2.0);
+
+    let half_result = half_quarter * p;
+    let half_expected = point(SQRT_2/2.0, 0.0, SQRT_2/2.0);
+
+    let full_result = full_quarter * p;
+    let full_expected = point(1.0, 0.0, 0.0);
+
+    approx_eq!(f64, half_result.x, half_expected.x, ulps = 15);
+    approx_eq!(f64, half_result.y, half_expected.x, ulps = 15);
+    approx_eq!(f64, half_result.z, half_expected.x, ulps = 15);
+
+    approx_eq!(f64, full_result.x, full_expected.x, ulps = 15);
+    approx_eq!(f64, full_result.y, full_expected.x, ulps = 15);
+    approx_eq!(f64, full_result.z, full_expected.x, ulps = 15);
+}
+
