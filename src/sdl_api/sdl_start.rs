@@ -1,4 +1,4 @@
-use crate::SDLWrapper;
+use crate::sdl_api::SDLWrapper;
 use sdl2::pixels::Color;
 
 pub fn sdl_start(window_name: &str,

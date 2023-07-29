@@ -1,4 +1,4 @@
-use rt_challenge::rt_color::RTColor;
+use crate::rt_color::RTColor;
 use sdl2::pixels::Color;
 use sdl2::rect::Point;
 use sdl2::video::Window;
