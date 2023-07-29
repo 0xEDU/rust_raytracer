@@ -124,3 +124,44 @@ fn z_axis_rotation_test() {
     approx_eq!(f64, full_result.y, full_expected.x, ulps = 15);
     approx_eq!(f64, full_result.z, full_expected.x, ulps = 15);
 }
+
+#[test]
+fn shearing_transformation_test() {
+    let transform = shearing(1.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+    let p = point(2.0, 3.0, 4.0);
+    assert!(transform * p == point(5.0, 3.0, 4.0));
+}
+
+#[test]
+fn x_to_z_shearing_transformation_test() {
+    let transform = shearing(0.0, 1.0, 0.0, 0.0, 0.0, 0.0);
+    let p = point(2.0, 3.0, 4.0);
+    assert!(transform * p == point(6.0, 3.0, 4.0));
+}
+
+#[test]
+fn y_to_x_shearing_transformation_test() {
+    let transform = shearing(0.0, 0.0, 1.0, 0.0, 0.0, 0.0);
+    let p = point(2.0, 3.0, 4.0);
+    assert!(transform * p == point(2.0, 5.0, 4.0));
+}
+
+#[test]
+fn y_to_z_shearing_transformation_test() {
+    let transform = shearing(0.0, 0.0, 0.0, 1.0, 0.0, 0.0);
+    let p = point(2.0, 3.0, 4.0);
+    assert!(transform * p == point(2.0, 7.0, 4.0));
+}
+
+#[test]
+fn z_to_x_shearing_transformation_test() {
+    let transform = shearing(0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    let p = point(2.0, 3.0, 4.0);
+    assert!(transform * p == point(2.0, 3.0, 6.0));
+}
+#[test]
+fn z_to_y_shearing_transformation_test() {
+    let transform = shearing(0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
+    let p = point(2.0, 3.0, 4.0);
+    assert!(transform * p == point(2.0, 3.0, 7.0));
+}
