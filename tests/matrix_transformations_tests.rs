@@ -184,3 +184,14 @@ fn chaining_transformations_test() {
     let p4 = c * p3;
     assert!(compare_tuples(p4, point(15.0, 0.0, 7.0)));
 }
+
+#[test]
+fn reverse_chaining_transformations_test() {
+    let p = point(1.0, 0.0, 1.0);
+    let a = rotation_x(PI / 2.0);
+    let b = scaling(5.0, 5.0, 5.0);
+    let c = translation(10.0, 5.0, 7.0);
+
+    let t = c * b * a;
+    assert!(t * p == point(15.0, 0.0, 7.0));
+}
