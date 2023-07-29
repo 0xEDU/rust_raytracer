@@ -10,6 +10,12 @@ pub struct RTColor {
 pub fn color(r: f64, g: f64, b: f64) -> RTColor {
     RTColor { r, g, b }
 }
+
+impl RTColor {
+    pub fn new(r: f64, g: f64, b: f64) -> Self {
+        RTColor { r, g, b }
+    }
+}
 /* ========================================================================= */
 
 /* Operator overloads for RTColor ========================================== */
